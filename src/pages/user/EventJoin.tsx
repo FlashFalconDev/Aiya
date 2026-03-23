@@ -745,6 +745,8 @@ const EventJoin: React.FC = () => {
 
   // 判斷是否可以報名
   const isRegistrationOpen = eventInfo.event_status === 'registration_open';
+  const sessionCount = eventInfo.session_summary?.count ?? eventInfo.sessions?.length ?? 0;
+  const hasMultipleSessions = sessionCount > 1;
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -811,14 +813,47 @@ const EventJoin: React.FC = () => {
                 </div>
                 
                 <div className="space-y-2 text-sm">
-                  <div className="flex items-center gap-2 text-gray-500">
-                    <i className="ri-calendar-line"></i>
-                    <span>{formatDateTime(eventInfo.start_time)} - {formatDateTime(eventInfo.end_time)}</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-gray-500">
-                    <i className="ri-map-pin-line"></i>
-                    <span>{eventInfo.location}</span>
-                  </div>
+                  {hasMultipleSessions ? (
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-2 text-gray-700 font-medium">
+                        <i className="ri-calendar-check-line"></i>
+                        <span>活動場次（共 {sessionCount} 場）</span>
+                      </div>
+                      <div className="space-y-2">
+                        {eventInfo.sessions?.map((session) => (
+                          <div
+                            key={session.id}
+                            className="rounded-lg border border-gray-200 bg-gray-50 px-3 py-2"
+                          >
+                            <div className="text-gray-800 font-medium">
+                              第 {session.sequence} 場{session.title ? `｜${session.title}` : ''}
+                            </div>
+                            <div className="text-gray-500 mt-1 flex items-center gap-2">
+                              <i className="ri-time-line"></i>
+                              <span>{formatDateTime(session.start_at)} - {formatDateTime(session.end_at)}</span>
+                            </div>
+                            {session.location && (
+                              <div className="text-gray-500 mt-1 flex items-center gap-2">
+                                <i className="ri-map-pin-line"></i>
+                                <span>{session.location}</span>
+                              </div>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                    <>
+                      <div className="flex items-center gap-2 text-gray-500">
+                        <i className="ri-calendar-line"></i>
+                        <span>{formatDateTime(eventInfo.start_time)} - {formatDateTime(eventInfo.end_time)}</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-gray-500">
+                        <i className="ri-map-pin-line"></i>
+                        <span>{eventInfo.location}</span>
+                      </div>
+                    </>
+                  )}
                   <div className="flex items-center gap-2 text-gray-500">
                     <i className="ri-money-dollar-circle-line"></i>
                     <span>

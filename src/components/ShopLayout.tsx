@@ -60,6 +60,10 @@ const ShopLayout: React.FC<ShopLayoutProps> = ({ children }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const { clientSid } = useParams();
+  const searchParams = new URLSearchParams(location.search);
+  const hideChrome = ['1', 'true', 'yes'].includes((searchParams.get('hide_chrome') || '').toLowerCase());
+  const hideHeader = hideChrome || ['1', 'true', 'yes'].includes((searchParams.get('hide_header') || '').toLowerCase());
+  const hideFooter = hideChrome || ['1', 'true', 'yes'].includes((searchParams.get('hide_footer') || '').toLowerCase());
   const [shopInfo, setShopInfo] = useState<ShopInfo | null>(null);
   const [memberCard, setMemberCard] = useState<MemberCardData | null>(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -226,38 +230,40 @@ const ShopLayout: React.FC<ShopLayoutProps> = ({ children }) => {
     <ShopContext.Provider value={contextValue}>
       <div className="min-h-screen bg-gray-50 flex flex-col">
         {/* Mobile Header */}
-        <header className="bg-white border-b border-gray-200 px-4 py-3 sticky top-0 z-30">
-          <div className="flex items-center justify-between max-w-lg mx-auto">
-            <div className="flex items-center gap-3">
-              {shopInfo?.logo_url ? (
-                <img
-                  src={shopInfo.logo_url}
-                  alt={shopInfo.company_name}
-                  className="w-8 h-8 rounded-full object-cover"
-                />
-              ) : (
-                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
-                  <span className="text-white text-sm font-bold">
-                    {(shopInfo?.company_name || clientSid || 'S').charAt(0).toUpperCase()}
-                  </span>
+        {!hideHeader && (
+          <header className="bg-white border-b border-gray-200 px-4 py-3 sticky top-0 z-30">
+            <div className="flex items-center justify-between max-w-lg mx-auto">
+              <div className="flex items-center gap-3">
+                {shopInfo?.logo_url ? (
+                  <img
+                    src={shopInfo.logo_url}
+                    alt={shopInfo.company_name}
+                    className="w-8 h-8 rounded-full object-cover"
+                  />
+                ) : (
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
+                    <span className="text-white text-sm font-bold">
+                      {(shopInfo?.company_name || clientSid || 'S').charAt(0).toUpperCase()}
+                    </span>
+                  </div>
+                )}
+                <div>
+                  <h1 className="text-base font-semibold text-gray-900">
+                    {shopInfo?.company_name || clientSid}
+                  </h1>
                 </div>
-              )}
-              <div>
-                <h1 className="text-base font-semibold text-gray-900">
-                  {shopInfo?.company_name || clientSid}
-                </h1>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-sm font-medium text-gray-600">
+                  {getPageTitle()}
+                </span>
               </div>
             </div>
-            <div className="flex items-center gap-2">
-              <span className="text-sm font-medium text-gray-600">
-                {getPageTitle()}
-              </span>
-            </div>
-          </div>
-        </header>
+          </header>
+        )}
 
         {/* 登入提示 Banner */}
-        {showLoginBanner && (
+        {!hideHeader && showLoginBanner && (
           <div className="bg-gradient-to-r from-purple-500 to-pink-500 px-4 py-3 relative">
             <div className="max-w-lg mx-auto flex items-center justify-between">
               <div className="flex items-center gap-3 flex-1">
@@ -293,42 +299,44 @@ const ShopLayout: React.FC<ShopLayoutProps> = ({ children }) => {
         )}
 
         {/* Main Content */}
-        <main className="flex-1 pb-20">
+        <main className={`flex-1 ${hideFooter ? 'pb-0' : 'pb-20'}`}>
           <div className="max-w-lg mx-auto">
             {children}
           </div>
         </main>
 
         {/* Bottom Navigation */}
-        <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-40 safe-area-bottom">
-          <div className="max-w-lg mx-auto">
-            <div className="flex justify-around">
-              {menuItems.map((item) => {
-                const isActive = isActivePath(item.path);
-                const Icon = item.icon;
+        {!hideFooter && (
+          <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-40 safe-area-bottom">
+            <div className="max-w-lg mx-auto">
+              <div className="flex justify-around">
+                {menuItems.map((item) => {
+                  const isActive = isActivePath(item.path);
+                  const Icon = item.icon;
 
-                return (
-                  <button
-                    key={item.id}
-                    onClick={() => navigate(item.path)}
-                    className={`flex flex-col items-center py-2 px-2 flex-1 transition-colors ${
-                      isActive ? item.activeColor : 'text-gray-400'
-                    }`}
-                  >
-                    <div className={`p-1.5 rounded-lg transition-colors ${
-                      isActive ? item.bgColor : ''
-                    }`}>
-                      <Icon size={20} />
-                    </div>
-                    <span className={`text-xs mt-1 ${isActive ? 'font-semibold' : 'font-medium'}`}>
-                      {item.label}
-                    </span>
-                  </button>
-                );
-              })}
+                  return (
+                    <button
+                      key={item.id}
+                      onClick={() => navigate(item.path)}
+                      className={`flex flex-col items-center py-2 px-2 flex-1 transition-colors ${
+                        isActive ? item.activeColor : 'text-gray-400'
+                      }`}
+                    >
+                      <div className={`p-1.5 rounded-lg transition-colors ${
+                        isActive ? item.bgColor : ''
+                      }`}>
+                        <Icon size={20} />
+                      </div>
+                      <span className={`text-xs mt-1 ${isActive ? 'font-semibold' : 'font-medium'}`}>
+                        {item.label}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
-          </div>
-        </nav>
+          </nav>
+        )}
       </div>
     </ShopContext.Provider>
   );

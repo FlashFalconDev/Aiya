@@ -132,6 +132,9 @@ const ArticleDetail: React.FC = () => {
     return null;
   }
 
+  const hasViewCount = Number(article.view_count) > 0;
+  const hasLikeCount = Number(article.like_count) > 0;
+
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-4xl mx-auto px-4 py-6 lg:py-8">
@@ -209,16 +212,20 @@ const ArticleDetail: React.FC = () => {
               </div>
 
               {/* 瀏覽數 */}
-              <div className="flex items-center gap-2">
-                <Eye size={16} />
-                <span>{article.view_count}</span>
-              </div>
+              {hasViewCount && (
+                <div className="flex items-center gap-2">
+                  <Eye size={16} />
+                  <span>{article.view_count}</span>
+                </div>
+              )}
 
               {/* 按讚數 */}
-              <div className="flex items-center gap-2">
-                <Heart size={16} />
-                <span>{article.like_count}</span>
-              </div>
+              {hasLikeCount && (
+                <div className="flex items-center gap-2">
+                  <Heart size={16} />
+                  <span>{article.like_count}</span>
+                </div>
+              )}
             </div>
 
             {/* 文章內容 */}

@@ -20,8 +20,13 @@ const ArticleCard: React.FC<{
   article: Article;
   onClick: () => void;
   isMobile: boolean;
-}> = ({ article, onClick, isMobile }) => (
-  <div
+}> = ({ article, onClick, isMobile }) => {
+  const hasViewCount = Number(article.view_count) > 0;
+  const hasLikeCount = Number(article.like_count) > 0;
+  const shouldShowStats = hasViewCount || hasLikeCount;
+
+  return (
+    <div
     onClick={onClick}
     className={`bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer border border-gray-100 flex flex-col ${
       isMobile ? 'p-4' : 'p-6'
@@ -78,21 +83,28 @@ const ArticleCard: React.FC<{
 
         <div className="flex items-center justify-between text-xs text-gray-400">
           <span>約 {Math.ceil(article.content.length / 200)} 分鐘閱讀</span>
-          <div className="flex items-center gap-3">
-            <div className="flex items-center gap-1">
-              <Eye size={14} />
-              <span>{article.view_count}</span>
+          {shouldShowStats && (
+            <div className="flex items-center gap-3">
+              {hasViewCount && (
+                <div className="flex items-center gap-1">
+                  <Eye size={14} />
+                  <span>{article.view_count}</span>
+                </div>
+              )}
+              {hasLikeCount && (
+                <div className="flex items-center gap-1">
+                  <Heart size={14} />
+                  <span>{article.like_count}</span>
+                </div>
+              )}
             </div>
-            <div className="flex items-center gap-1">
-              <Heart size={14} />
-              <span>{article.like_count}</span>
-            </div>
-          </div>
+          )}
         </div>
       </div>
     </div>
   </div>
-);
+  );
+};
 
 // 影音文章主頁面
 const UserArticles: React.FC = () => {

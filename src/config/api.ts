@@ -1782,10 +1782,32 @@ export type DynamicFormData = Record<string, any>;
 
 // ==================== 活動報名相關介面 ====================
 
+export interface EventSession {
+  id: number;
+  sequence: number;
+  title: string;
+  start_at: string;
+  end_at: string;
+  location: string;
+  check_in_opens_at?: string | null;
+  check_in_closes_at?: string | null;
+  is_active: boolean;
+}
+
+export interface EventSessionSummary {
+  count: number;
+  active_count: number;
+  primary_session_id?: number | null;
+  primary_start_at?: string | null;
+  primary_end_at?: string | null;
+}
+
 export interface EventJoinInfo extends Omit<ItemEventItem, 'statistics'> {
   // 繼承 ItemEventItem 的所有欄位，但排除 statistics
   // 這樣可以確保與新的 API 端點返回的資料結構完全匹配
   item_pk: number; // 活動的主鍵，用於訂單創建
+  sessions?: EventSession[];
+  session_summary?: EventSessionSummary;
 }
 
 export interface EventRegistrationData {

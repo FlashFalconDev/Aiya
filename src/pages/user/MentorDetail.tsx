@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { useLocation, useParams, useNavigate } from 'react-router-dom';
-import { Share2, UserPlus, Film, FileText, Calendar, Clock, User, Eye, Heart } from 'lucide-react';
+import { Share2, Film, FileText, Calendar, Clock, User, Eye, Heart } from 'lucide-react';
 import { AI_COLORS } from '../../constants/colors';
 import { useBusinessCardData } from '../../hooks/useBusinessCardData';
 import { getArticlesAll, type Article, getEventSkuList } from '../../config/api';
@@ -145,9 +145,6 @@ const MentorDetail: React.FC = () => {
             <div className="flex-1 min-w-0">
               <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{profile.name}</h1>
               <div className="flex items-center gap-3 mt-3">
-                <button className={`px-3 py-2 sm:px-4 rounded-lg border ${AI_COLORS.border} ${AI_COLORS.text} hover:${AI_COLORS.bgLight}`}>
-                  <UserPlus size={16} className="inline mr-2" /> 關注
-                </button>
                 <button onClick={() => setShowShare(true)} className={`${AI_COLORS.button} px-3 py-2 sm:px-4 rounded-lg`}>
                   <Share2 size={16} className="inline mr-2" /> 分享
                 </button>

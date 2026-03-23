@@ -15,6 +15,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const { user, isAuthenticated, logout, checkAuth } = useAuth();
+  const isAiyaClient = import.meta.env.VITE_CLIENT_SID === 'aiya';
   const { showSuccess } = useToast();
   const { isOpen: notifOpen, currentNotification, total: notifTotal, currentIndex: notifIndex, fetchUnread, handleConfirm: handleNotifConfirm } = useNotification();
   const prevPathnameRef = useRef<string | null>(null);
@@ -46,13 +47,16 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         { path: '/business/usage', icon: BarChart3, label: '使用紀錄' },
       ];
     } else if (location.pathname.startsWith('/client')) {
-      return [
+      const clientNavItems = [
         { path: '/client', icon: Bot, label: '導師介紹' },
         { path: '/client/articles', icon: FileText, label: '影音文章' },
         { path: '/client/event', icon: Calendar, label: '課程活動' },
         { path: '/client/spread', icon: Layers, label: '卡牌占卜' },
         { path: '/client/profile', icon: User, label: '會員專區' },
       ];
+      return isAiyaClient
+        ? clientNavItems.filter((item) => item.path !== '/client/spread')
+        : clientNavItems;
     } else {
       return [
         { path: '/provider', icon: CreditCard, label: '雲端名片' },

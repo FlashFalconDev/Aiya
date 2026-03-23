@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { AI_COLORS } from '../constants/colors';
 import { 
   Cloud, Bot, Video, FileText, Users, Calendar, ShoppingCart, 
-  Sparkles, ArrowRight, CheckCircle, Star, Zap, Target, Shield, Briefcase
+  Sparkles, ArrowRight, CheckCircle, Star, Zap, Target, Shield
 } from 'lucide-react';
 
 const HomePage: React.FC = () => {
@@ -21,14 +21,14 @@ const HomePage: React.FC = () => {
   ];
 
   const benefits = [
-    'AI驅動的智能工具',
-    '一站式商業解決方案',
-    '專業級內容創作',
-    '完整的客戶管理系統'
+    '遊戲化體驗設計',
+    '寓教於樂的學習方式',
+    '輕盈的探索過程',
+    '自然的成長體驗'
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-orange-100">
+    <div className="min-h-screen bg-gradient-to-br from-pink-25 via-white to-pink-50">
       {/* Hero Section */}
       <div className="relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
@@ -39,7 +39,7 @@ const HomePage: React.FC = () => {
                 <Sparkles className={`w-10 h-10 ${AI_COLORS.text}`} />
               </div>
               <h1 className="text-7xl font-bold text-gray-900 mb-4">
-                Prepoe
+                Aiya心樂園
               </h1>
               <div className="flex items-center justify-center gap-2 mb-6">
                 <Star className={`w-6 h-6 ${AI_COLORS.text} fill-current`} />
@@ -52,13 +52,14 @@ const HomePage: React.FC = () => {
 
             {/* Main Headline */}
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-              提供AI輔助工具
-              <br />
-              <span className={`${AI_COLORS.text}`}>打造超級個體</span>
+              在生活中發現每一刻的美好
             </h2>
             
             <p className="hidden md:block text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
-              整合雲端名片、AI助手、AI影音、私域內容、互動模組、活動系統、預約系統、商城系統的完整解決方案
+              Aiya是一個寓教於樂的心靈平台。<br />
+              透過遊戲化與體驗化的設計，<br />
+              讓探索變得輕盈，讓成長變得自然。<br />
+              用輕鬆的方式打開心，用深度的方式改變生命。
             </p>
 
             {/* CTA Buttons */}
@@ -76,13 +77,6 @@ const HomePage: React.FC = () => {
               >
                 瀏覽服務
                 <Users className="w-5 h-5" />
-              </button>
-              <button
-                onClick={() => navigate('/business')}
-                className={`${AI_COLORS.buttonOutline} px-8 py-4 rounded-xl text-lg font-semibold flex items-center justify-center gap-2 hover:scale-105 transition-all duration-200`}
-              >
-                商務入口
-                <Briefcase className="w-5 h-5" />
               </button>
             </div>
 
@@ -111,7 +105,7 @@ const HomePage: React.FC = () => {
             {features.map((feature, index) => (
               <div
                 key={index}
-                className="group bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-lg hover:border-orange-200 transition-all duration-300 cursor-pointer"
+                className="group bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-lg hover:border-pink-200 transition-all duration-300 cursor-pointer"
                 onClick={() => navigate('/provider')}
               >
                 <div className={`w-12 h-12 ${AI_COLORS.bg} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-200`}>
@@ -126,25 +120,25 @@ const HomePage: React.FC = () => {
       </div>
 
       {/* CTA Section */}
-      <div className="py-20 bg-gradient-to-r from-orange-500 to-orange-600">
+      <div className="py-20 bg-gradient-to-r from-pink-200 to-pink-300">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h3 className="text-4xl font-bold text-white mb-6">
-            準備好開始您的超級個體之旅了嗎？
+            準備好開始您的心靈成長之旅了嗎？
           </h3>
-          <p className="text-xl text-orange-100 mb-8">
-            立即體驗 Prepoe 的強大功能，讓AI成為您事業成長的最佳夥伴
+          <p className="text-xl text-pink-50 mb-8">
+            立即體驗 Aiya心樂園 的溫暖功能，讓心靈成長變得輕鬆自然
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
               onClick={() => navigate('/provider')}
-              className="bg-white text-orange-600 px-8 py-4 rounded-xl text-lg font-semibold hover:bg-gray-50 transition-colors duration-200 shadow-lg flex items-center justify-center gap-2"
+              className="bg-white text-pink-400 px-8 py-4 rounded-xl text-lg font-semibold hover:bg-gray-50 transition-colors duration-200 shadow-lg flex items-center justify-center gap-2"
             >
               <Zap className="w-5 h-5" />
               立即開始
             </button>
             <button
               onClick={() => navigate('/client')}
-              className="border-2 border-white text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-white hover:text-orange-600 transition-colors duration-200 flex items-center justify-center gap-2"
+              className="border-2 border-white text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-white hover:text-pink-400 transition-colors duration-200 flex items-center justify-center gap-2"
             >
               <Shield className="w-5 h-5" />
               了解更多
@@ -158,13 +152,13 @@ const HomePage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="flex items-center justify-center gap-2 mb-4">
             <Sparkles className={`w-6 h-6 ${AI_COLORS.text}`} />
-            <span className="text-2xl font-bold">Prepoe</span>
+            <span className="text-2xl font-bold">Aiya心樂園</span>
           </div>
           <p className="text-gray-400 mb-6">
-            提供AI輔助工具，打造超級個體
+            在生活中發現每一刻的美好
           </p>
           <div className="flex justify-center gap-6 text-sm text-gray-400">
-            <span>© 2024 Prepoe. All rights reserved.</span>
+            <span>© 2024 Aiya心樂園. All rights reserved.</span>
           </div>
         </div>
       </div>

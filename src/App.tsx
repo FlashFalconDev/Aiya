@@ -1,6 +1,6 @@
 
 import React, { Suspense } from 'react';
-import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 import { BusinessCardProvider } from './contexts/BusinessCardContext';
 import ToastProvider from './components/ToastContainer';
@@ -91,6 +91,8 @@ const LoadingSpinner = () => (
 const basename = '/';
 
 function App() {
+  const isAiyaClient = import.meta.env.VITE_CLIENT_SID === 'aiya';
+
   return (
     <AuthProvider>
       <ToastProvider>
@@ -123,8 +125,14 @@ function App() {
                             <Route path="video-creation" element={<VideoCreation />} />
                             <Route path="audio" element={<Audio />} />
                             <Route path="article" element={<Article />} />
-                            <Route path="cardhack" element={<CardHack />} />
-                            <Route path="cardhack/wizard" element={<CardDeckWizard />} />
+                            <Route
+                              path="cardhack"
+                              element={isAiyaClient ? <Navigate to="/provider/creator" replace /> : <CardHack />}
+                            />
+                            <Route
+                              path="cardhack/wizard"
+                              element={isAiyaClient ? <Navigate to="/provider/creator" replace /> : <CardDeckWizard />}
+                            />
                           </Route>
                           {/* AI客服管理路由 */}
                           <Route path="/ai-service" element={<AIServiceManagement />} />
@@ -158,7 +166,10 @@ function App() {
                         <Route path="/mentors" element={<UserMentors />} />
                         <Route path="/provider/:slug" element={<MentorDetail />} />
                         <Route path="/event" element={<UserEvent />} />
-                        <Route path="/spread" element={<UserSpreadItems />} />
+                        <Route
+                          path="/spread"
+                          element={isAiyaClient ? <Navigate to="/client" replace /> : <UserSpreadItems />}
+                        />
                         <Route path="/spread/:sku" element={<SpreadDetail />} />
                         <Route path="/articles" element={<UserArticles />} />
                         <Route path="/articles/:slug" element={<ArticleDetail />} />

@@ -24,7 +24,7 @@ import {
 export type WizardStep = 1 | 2 | 3;
 
 export type LoraStyleId = 'E01' | 'E02' | 'E03' | 'E04' | 'E05' | 'E06' | 'E07' | 'E08' | 'E09' | 'E10' | 'E11' | 'E12' | '';
-export type StyleTemplateId = 'S01' | 'S02' | 'S03' | 'S04' | 'S05' | 'S06';
+export type StyleTemplateId = 'S01' | 'S02' | 'S03' | 'S04' | 'S05' | 'S06' | 'S07' | 'S08' | 'S09' | 'S10' | 'S11' | 'S12';
 
 export interface DeckStyle {
   styleTemplate: StyleTemplateId;  // 藝術風格模板

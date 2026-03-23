@@ -209,7 +209,9 @@ const UserEvent: React.FC = () => {
         {/* 活動列表 */}
         {!loading && filteredEvents.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredEvents.map((event) => (
+            {filteredEvents.map((event) => {
+              const eventStatus = event.event_status as string;
+              return (
               <div key={event.id} className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden flex flex-col">
                 {/* 活動主圖 */}
                 {event.main_image && (
@@ -222,13 +224,14 @@ const UserEvent: React.FC = () => {
                     {/* 活動狀態標籤 - 使用後端狀態 */}
                     <div className="absolute top-3 right-3">
                       <span className={`px-2 py-1 text-xs rounded-full font-medium ${
-                        event.event_status === 'registration_open' ? 'bg-green-500 text-white' :
-                        event.event_status === 'registration_closed' ? 'bg-yellow-100 text-yellow-700' :
-                        event.event_status === 'full' ? 'bg-orange-100 text-orange-700' :
-                        event.event_status === 'in_progress' ? 'bg-blue-500 text-white' :
-                        event.event_status === 'finished' ? 'bg-purple-500 text-white' :
-                        event.event_status === 'cancelled' ? 'bg-red-500 text-white' :
-                        event.event_status === 'draft' ? 'bg-gray-100 text-gray-700' :
+                        eventStatus === 'registration_open' ? 'bg-green-500 text-white' :
+                        eventStatus === 'registration_closed' ? 'bg-yellow-100 text-yellow-700' :
+                        eventStatus === 'full' ? 'bg-orange-100 text-orange-700' :
+                        eventStatus === 'in_progress' ? 'bg-blue-500 text-white' :
+                        eventStatus === 'finished' ? 'bg-purple-500 text-white' :
+                        eventStatus === 'completed' ? 'bg-purple-500 text-white' :
+                        eventStatus === 'cancelled' ? 'bg-red-500 text-white' :
+                        eventStatus === 'draft' ? 'bg-gray-100 text-gray-700' :
                         'bg-gray-100 text-gray-700'
                       }`}>
                         {event.event_status_display}
@@ -312,7 +315,7 @@ const UserEvent: React.FC = () => {
                   </div>
                 </div>
               </div>
-            ))}
+            )})}
           </div>
         )}
       </div>

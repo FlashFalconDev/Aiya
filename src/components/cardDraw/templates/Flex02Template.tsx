@@ -174,7 +174,7 @@ const Flex02Template: React.FC<CardDrawTemplateProps> = ({
     setAiSubmitting(true);
     const sessionId = drawResult.session_id ?? (drawResult.form_data?.session_id as number);
     if (!sessionId) return;
-    onAiSubmit({ session_id: sessionId, note: q })
+    onAiSubmit({ session_id: String(sessionId), note: q })
       .then((r) => {
         if (cancelled) return;
         if (r?.success) {
@@ -298,7 +298,7 @@ const Flex02Template: React.FC<CardDrawTemplateProps> = ({
       try {
         const sessionId = drawResult.session_id ?? (drawResult.form_data?.session_id as number);
         if (!sessionId) { showError('缺少 session_id'); setAiSubmitting(false); return; }
-        const r = await onAiSubmit({ session_id: sessionId, note: q });
+        const r = await onAiSubmit({ session_id: String(sessionId), note: q });
         if (r?.success) {
           setAiResultText(r.data?.interpretation || 'AI 解讀完成');
           setShowAiInputScreen(false);

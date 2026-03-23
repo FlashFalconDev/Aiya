@@ -14,22 +14,22 @@ export const COLORS = {
     900: '#4c1d95',
   },
   
-  // AI 相關色彩（橙色系）
+  // AI 相關色彩（基於 #DECACD 和 #F7F3F4）
   ai: {
-    primary: '#ea580c',      // orange-600
-    light: '#fed7aa',        // orange-200
-    lighter: '#fff7ed',      // orange-50
-    dark: '#c2410c',         // orange-700
-    text: '#ea580c',         // orange-600
-    bg: '#fed7aa',           // orange-200
-    bgHover: '#fdba74',      // orange-300
-    bgLight: '#fff7ed',      // orange-50
+    primary: '#DECACD',      // 主色調
+    light: '#F7F3F4',        // 淺色版本
+    lighter: '#F7F3F4',      // 更淺版本
+    dark: '#C4A8AB',         // 深色版本
+    text: '#DECACD',         // 文字顏色
+    bg: '#F7F3F4',           // 背景顏色
+    bgHover: '#E6D5D8',      // 懸停背景
+    bgLight: '#F7F3F4',      // 淺背景
   },
   
   // 漸變色彩
   gradients: {
-    ai: 'from-orange-500 to-red-500',
-    aiReverse: 'from-red-400 to-orange-600',
+    ai: 'from-pink-200 to-pink-300',
+    aiReverse: 'from-pink-300 to-pink-200',
     primary: 'from-blue-500 to-indigo-600',
     primaryHover: 'from-blue-600 to-indigo-700',
   },
@@ -37,15 +37,15 @@ export const COLORS = {
   // 功能色彩
   functions: {
     ai: {
-      icon: 'text-orange-600',
-      bg: 'bg-orange-200',
-      bgHover: 'bg-orange-300',
-      bgLight: 'bg-orange-50',
-      text: 'text-orange-600',
-      textDark: 'text-orange-700',
-      textLight: 'text-orange-600',
-      border: 'border-orange-300',
-      button: 'bg-orange-600 hover:bg-orange-700',
+      icon: 'text-pink-300',
+      bg: 'bg-pink-50',
+      bgHover: 'bg-pink-100',
+      bgLight: 'bg-pink-25',
+      text: 'text-pink-400',
+      textDark: 'text-pink-500',
+      textLight: 'text-pink-300',
+      border: 'border-pink-100',
+      button: 'bg-pink-300 hover:bg-pink-400',
     }
   }
 } as const;
@@ -53,83 +53,75 @@ export const COLORS = {
 // Tailwind 類別對應
 export const AI_COLORS = {
   // 圖標顏色
-  icon: 'text-orange-600',
-  iconLight: 'text-orange-500',
+  icon: 'text-pink-300',
+  iconLight: 'text-pink-200',
   
   // 背景顏色
-  bg: 'bg-orange-200',
-  bgLight: 'bg-orange-50',
-  bgHover: 'bg-orange-300',
-  bgDark: 'bg-orange-600',
+  bg: 'bg-pink-50',
+  bgLight: 'bg-pink-25',
+  bgHover: 'bg-pink-100',
+  bgDark: 'bg-pink-300',
   
   // 文字顏色
-  text: 'text-orange-600',
-  textLight: 'text-orange-500',
-  textDark: 'text-orange-700',
+  text: 'text-pink-400',
+  textLight: 'text-pink-300',
+  textDark: 'text-pink-500',
   textWhite: 'text-white',
   
   // 邊框顏色
-  border: 'border-orange-300',
-  borderHover: 'border-orange-400',
+  border: 'border-pink-100',
+  borderHover: 'border-pink-200',
   
   // 按鈕樣式
-  button: 'bg-orange-600 hover:bg-orange-700 text-white',
-  buttonOutline: 'border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white',
+  button: 'bg-pink-300 hover:bg-pink-400 text-white',
+  buttonOutline: 'border-pink-300 text-pink-400 hover:bg-pink-300 hover:text-white',
   
   // 狀態指示
-  status: 'bg-orange-200 text-orange-700',
-  statusCompleted: 'bg-orange-200 text-orange-700',
+  status: 'bg-pink-50 text-pink-500',
+  statusCompleted: 'bg-pink-50 text-pink-500',
   
   // 漸變
-  gradient: 'bg-gradient-to-r from-orange-500 to-red-500',
-  gradientReverse: 'bg-gradient-to-br from-red-400 to-orange-600',
+  gradient: 'bg-gradient-to-r from-pink-200 to-pink-300',
+  gradientReverse: 'bg-gradient-to-br from-pink-300 to-pink-200',
 } as const;
 
-// 增強版顏色（用於 Audio 等進階功能頁面）
+// 增強版顏色配置（用於 Audio 等進階頁面）
 export const ENHANCED_COLORS = {
-  // 圖標顏色
-  icon: 'text-orange-600',
-  iconLight: 'text-orange-500',
-
   // 背景顏色
-  bg: 'bg-orange-200',
-  bgLight: 'bg-orange-50',
-  bgLighter: 'bg-orange-100',
-  bgHover: 'bg-orange-300',
-  bgDark: 'bg-orange-600',
+  bg: 'bg-pink-50',
+  bgLight: 'bg-pink-25',
+  bgLighter: 'bg-pink-50/50',
+  bgHover: 'bg-pink-100',
 
   // 文字顏色
-  text: 'text-orange-600',
-  textLight: 'text-orange-500',
-  textDark: 'text-orange-700',
-  textWhite: 'text-white',
+  text: 'text-pink-400',
+  textLight: 'text-pink-300',
+
+  // 圖標顏色
+  iconLight: 'text-pink-300',
 
   // 邊框顏色
-  border: 'border-orange-300',
-  borderLight: 'border-orange-200',
-  borderHover: 'border-orange-400',
+  border: 'border-pink-300',
+  borderLight: 'border-pink-200',
 
   // 按鈕樣式
-  button: 'bg-orange-600 hover:bg-orange-700 text-white',
-  buttonOutline: 'border-2 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white',
-  buttonGradient: 'bg-gradient-to-r from-orange-500 to-red-500 text-white',
-
-  // 狀態指示
-  status: 'bg-orange-200 text-orange-700',
-  statusCompleted: 'bg-orange-200 text-orange-700',
-  statusSelected: 'bg-orange-100 text-orange-700',
+  button: 'bg-pink-300 text-white hover:bg-pink-400',
+  buttonOutline: 'border-2 border-pink-300 text-pink-400 hover:bg-pink-50',
+  buttonGradient: 'bg-gradient-to-r from-pink-300 to-pink-400 text-white',
 
   // 漸變
-  gradient: 'bg-gradient-to-r from-orange-500 to-red-500',
-  gradientLight: 'bg-gradient-to-br from-orange-100 to-red-100',
-  gradientReverse: 'bg-gradient-to-br from-red-400 to-orange-600',
+  gradient: 'bg-gradient-to-br from-pink-200 to-pink-300',
+  gradientLight: 'bg-gradient-to-br from-pink-100 to-pink-200',
 
-  // Hover 狀態
+  // 狀態顏色
+  statusSelected: 'bg-pink-100 text-pink-600',
+
+  // 懸停效果
   hover: {
-    border: 'hover:border-orange-400',
-    bg: 'hover:bg-orange-50',
-    shadow: 'hover:shadow-orange-200',
-  },
+    bg: 'hover:bg-pink-50',
+    border: 'hover:border-pink-300',
+    shadow: 'hover:shadow-lg hover:shadow-pink-100',
+  }
 } as const;
 
 // 使用範例和說明

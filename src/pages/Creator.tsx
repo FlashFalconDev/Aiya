@@ -21,6 +21,7 @@ const AICreator: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const isRoot = location.pathname === '/provider/creator';
+  const isAiyaClient = import.meta.env.VITE_CLIENT_SID === 'aiya';
   const { featureFlag, checkAuth } = useAuth();
   const [showNoPermission, setShowNoPermission] = useState(false);
   
@@ -69,7 +70,7 @@ const AICreator: React.FC = () => {
       features: ['自訂牌組管理', '多張牌卡創建', '牌義解釋編輯', '牌陣設計'],
       path: '/provider/creator/cardhack'
     }
-  ];
+  ].filter((option) => !(isAiyaClient && option.id === 'cardhack'));
 
   // 添加導航處理函數
   const handleNavigation = (path: string, optionId?: string) => {

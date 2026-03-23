@@ -104,7 +104,7 @@ const ShopRecharge: React.FC = () => {
         // 取得每個批次的詳細獎勵內容
         const allBatchIds = availableItems.flatMap((item: RechargeShopItem) => (item.key_batches || []).map(b => b.id));
         if (allBatchIds.length > 0) {
-          const details = await Promise.allSettled(allBatchIds.map(id => keysGetBatchDetail(id)));
+          const details = await Promise.allSettled(allBatchIds.map((id: number) => keysGetBatchDetail(id)));
           const detailMap: Record<number, any> = {};
           details.forEach((result, idx) => {
             if (result.status === 'fulfilled' && result.value) {
